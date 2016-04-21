@@ -25,7 +25,7 @@ void CarryManager::initialize(PabloFunction * const function, kernel::KernelBuil
     mRootScope = function->getEntryBlock();
     mCarryInfoVector.resize(mRootScope->enumerateScopes(0) + 1);
     mCarryPackType = mBitBlockType;
-    const unsigned totalCarryDataSize = std::max<unsigned>(enumerate(mRootScope, 0, 0), 1);
+    totalCarryDataSize = std::max<unsigned>(enumerate(mRootScope, 0, 0), 1);
     mCarryPackPtr.resize(totalCarryDataSize, nullptr);
     mCarryInPack.resize(totalCarryDataSize, nullptr);
     mCarryOutPack.resize(totalCarryDataSize, nullptr);
@@ -37,6 +37,9 @@ void CarryManager::initialize(PabloFunction * const function, kernel::KernelBuil
         mPcArrayIdx = kBuilder->addInternalState(pcArrayTy);
     }
     mKernelBuilder = kBuilder;
+}
+unsigned CarryManager::getCarrySize(){
+    return totalCarryDataSize;
 }
 
 /** ------------------------------------------------------------------------------------------------------------- *

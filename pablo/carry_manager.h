@@ -101,6 +101,9 @@ public:
     
     Value * declareCarryDataArray(Module * m);
 
+    unsigned getCarrySize();
+
+
 protected:
 
     Value * shortAdvanceCarryInCarryOut(const unsigned index, const unsigned shiftAmount, Value * const value);
@@ -116,6 +119,7 @@ protected:
     void storeCarryOut(const unsigned packIndex);
     
     Value * addToSummary(Value * const value);
+
 
     bool hasSummary() const;
     unsigned relativeFrameOffset(const unsigned frameOffset, const unsigned index) const;
@@ -143,6 +147,7 @@ private:
     unsigned mPabloCountCount; // Number of Pablo "Count" operations
     unsigned mTotalCarryDataBitBlocks;
     unsigned mCarryDataAllocationSize;
+    unsigned totalCarryDataSize = 0;
     std::vector<CarryData *> mCarryInfoVector;
     std::vector<Value *> mCarryPackPtr;
     std::vector<Value *> mCarryInPack;

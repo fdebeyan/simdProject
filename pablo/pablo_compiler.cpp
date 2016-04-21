@@ -88,7 +88,7 @@ llvm::Function * PabloCompiler::compile(PabloFunction * function) {
     mCarryManager = new CarryManager(iBuilder);
 
     GenerateKernel(function);
-
+    std::cerr << "Carry Size: " << mCarryManager->getCarrySize() << std::endl;
     delete mCarryManager;
     mCarryManager = nullptr;
     
